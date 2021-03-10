@@ -31,25 +31,11 @@
     <div class="result">
       <div class="success"></div>
       <h2>Hi {{ food }} lover, how is {{ soccerteam }} are doing this year? Don’t forget to {{ sport}}</h2>
-
-      <button class="close">Redo</button>
+      <button class="close">Close</button>
+      <button class="redo">Redo</button>
 
     </div>
   </div>
-    
-   <div class="wrong-questions">
-     <h2 v-if="wrongQuestions.length > 1">Your wrong Questions</h2>
-     <h2 v-else-if="wrongQuestions.length == 1">Your wrong Question</h2>
-     <div class="wrong-one" v-for="question in wrongQuestions">
-       <h3>{{ question.question }}</h3>
-       <div class="answers-container">
-         <span class="selected">{{ question.answers[question.selected] }}</span>
-         <span class="correct">{{ question.answers[question.correct_answer] }}</span>
-       </div>
-     </div>
-     
-     <button id="return-to-result">Show my result</button>
-   </div>
 </div>
 
 <div class="copy">Website made by <a href="https://sagiweizmann.com" title="Sagi Weizmann">Sagi Weizmann</a></div>
