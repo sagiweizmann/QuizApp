@@ -23,24 +23,24 @@ new Vue({
             },
             {
 
-            question: 'In any programming language, what is the most common way to iterate through an array?',
+            question: 'What is your Favourite Soccer team?',
             answers: [
-                'If Statements',
-                'Do-while loops',
-                'For loops',
-                'While loops'
+                'Barca',
+                'Hapoel',
+                'Maccabi',
+                'Ashdod team'
             ],
             correct_answer: 2,
             selected: null,
             sense: 0
             },
             {
-            question: 'According to the International System of Units, how many bytes are in a kilobyte of RAM?',
+            question: 'What is your Favourite Sport?',
             answers: [
-                '512',
-                '1000',
-                '1024',
-                '500'
+                'Football',
+                'Basketball',
+                'Baseball',
+                'Basethebase'
             ],
             correct_answer: 1,
             selected: null,
@@ -54,7 +54,10 @@ new Vue({
       currentQuestion: 0,
       answered: 0,
       wrongAnswers: 0,
-      correctAnswers: 0
+      correctAnswers: 0,
+      food: '',
+      soccerteam: '',
+      sport: '',
     }
   },
   methods: {
@@ -74,15 +77,6 @@ new Vue({
       nextBtn.removeAttribute('disabled');
       
     },
-    calculateResult: (questions) => {
-      var correct;
-      
-      for(var i=0; i< questions.length; i++) {
-        this.questions[i].selected == questions[i].correct ? correct++ : '';
-      }
-      
-      return (correct / questions.length) * 100;
-    }
   },
   mounted() {
     

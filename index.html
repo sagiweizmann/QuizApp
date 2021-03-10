@@ -30,13 +30,10 @@
     
     <div class="result">
       <div class="success"></div>
-      <h2>You have successfully finished the quiz, and your score is:</h2>
-      <h1 :class="[(Number(((correctAnswers / questions.length) *100)).toFixed(2) >= 50) ? 'green' : 'red']">{{ Number(((correctAnswers / questions.length) *100)).toFixed(2) }}%</h1>
-      <small><b>{{ correctAnswers }}</b>Correct, <b>{{ wrongAnswers }}</b>Wrong</small>
-      <button class="close">close</button>
-      <button class="show-wrong-ones"
-              v-show="wrongAnswers > 0"
-              @click="showWrongQuestion = true">Wrong answers</button>
+      <h2>Hi {{ food }} lover, how is {{ soccerteam }} are doing this year? Don’t forget to {{ sport}}</h2>
+
+      <button class="close">Redo</button>
+
     </div>
   </div>
     
