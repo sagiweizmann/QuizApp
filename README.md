@@ -1,5 +1,5 @@
 # QuizApp
-![Logo](logo.png |  width=100)
+<img src="logo.png" data-canonical-src="logo.png" width="300" height="300" />
 # Description 
 
 QuizApp is a Vue based App 
