@@ -18,29 +18,48 @@
         <transition name="slide-fade" mode="out-in">
           <div :key="questions[currentQuestion].question" :class="{'deactivate': answered == questions.length}">
            <h2>{{ questions[currentQuestion].question }}</h2>
-           <div class="answers">
+           <div v-if="questions[currentQuestion].type == 'options'" class="answers">
              <span v-for="(answer, index) in questions[currentQuestion].answers" :key="index" v-bind:data-index="index" @click="selectAnswer">{{ answer }}</span>
+           </div>
+           <div v-if="questions[currentQuestion].type == 'dropdown'" class="answers">
+            <select v-model="questions[currentQuestion].answer" @change="selectAnswer" >
+              <option disabled value="">Please select one</option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+            
+          </div>
+           <div v-else>
+            <label for="inp" class="inp">
+              <input type="text" id="inp" placeholder=" " v-model="questions[currentQuestion].answer" @change="selectAnswer">
+              <span class="label">{{questions[currentQuestion].qtype}}</span>
+              <span class="focus-bg"></span>
+            </label>
            </div>
           </div>
         </transition>
          <div class="next-question">
-           <button class="next-btn" disabled>{{ currentQuestion < (questions.length -1) ? 'Next' : 'Result!' }}</button>      
+           <button class="next-btn" @click="currentQuestion < (questions.length -1) ? () => {} : search(test)" disabled>{{ currentQuestion < (questions.length -1) ? 'Next' : 'Result!' }}</button>      
          </div>
       </div>
     
     <div class="result">
       <div class="success"></div>
-      <h2>Hi {{ food }} lover, how is {{ soccerteam }} are doing this year? Don’t forget to {{ sport}}</h2>
+      <h2>Hi {{ userdata[0] }} lover, how is {{ userdata[1] }} are doing this year? Don’t forget to {{ userdata[2] }}</h2>
       <button class="close">Close</button>
       <button class="redo">Redo</button>
-
+      <label>{{ this.videos}}</label>
     </div>
   </div>
 </div>
 
 <div class="copy">Website made by <a href="https://sagiweizmann.com" title="Sagi Weizmann">Sagi Weizmann</a></div>
-<!-- partial -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17-beta.0/vue.js'></script><script  src="./script.js"></script>
-
+<!-- Vue -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17-beta.0/vue.js'></script>
+<!-- Axios -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js'></script>
+<!-- Main Script -->
+<script  src="./script.js"></script>
 </body>
 </html>

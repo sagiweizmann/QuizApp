@@ -11,37 +11,28 @@ new Vue({
       questions: [
             {
             question: 'What is your Favourite Food?',
-            answers: [
-                'Apple',
-                'Bannaana',
-                'Orange',
-                'Kiwi'
-            ],
-            correct_answer: 0,
+            qtype:'Food',
+            type: 'text',
+
+            answer: "",
+            correct_answer: 1,
             selected: null,
             sense: 0
             },
             {
 
             question: 'What is your Favourite Soccer team?',
-            answers: [
-                'Barca',
-                'Hapoel',
-                'Maccabi',
-                'Ashdod team'
-            ],
-            correct_answer: 2,
+            type: 'text',
+            qtype:'Soccer Team',
+            answer: "",
+            correct_answer: 1,
             selected: null,
             sense: 0
             },
             {
             question: 'What is your Favourite Sport?',
-            answers: [
-                'Football',
-                'Basketball',
-                'Baseball',
-                'Basethebase'
-            ],
+            type: 'dropdown',
+            answer: "",
             correct_answer: 1,
             selected: null,
             sense: 0
@@ -51,9 +42,24 @@ new Vue({
       temp: [],
       currentQuestion: 0,
       answered: 0,
-      food: 'steak',
-      soccerteam: 'hapoel',
-      sport: 'yawn',
+      userdata:[],
+      lala:[],
+      test:['food'],
+      //Youtube Data API Related Vars
+      videos: [],
+      reformattedSearchString: '',
+      api: {
+        baseUrl: 'https://www.googleapis.com/youtube/v3/search?',
+        part: 'snippet',
+        type: 'video',
+        order: 'viewCount',
+        maxResults: 12,
+        q: '',
+        key: 'AIzaSyBUpIcostVZgNrhqxwxB0Fh5SNqxqMbj2g',
+        prevPageToken: '',
+        nextPageToken: ''
+      },
+      text_answer: ''
     }
   },
   methods: {
@@ -67,12 +73,53 @@ new Vue({
       });
       
       choise.classList.add('selected');
-      
+
       this.questions[this.currentQuestion].selected = choise.dataset.index; // add the selected index to the obj in the 'selected' property
-      
+      this.userdata.push( this.questions[this.currentQuestion].answer);
+      console.log(this.userdata);
       nextBtn.removeAttribute('disabled');
       
     },
+    //Get Data with Axios
+    getData(apiUrl) {
+      axios
+        .get(apiUrl)
+        .then(res => {
+          this.videos = res.data.items;
+          this.api.prevPageToken = res.data.prevPageToken;
+          this.api.nextPageToken = res.data.nextPageToken;
+        })
+        .catch(error => console.log(error));
+    },
+    //Youtube Search
+    search(searchParams) {
+      this.reformattedSearchString = searchParams.join(' ');
+      this.api.q = searchParams.join('+');
+      const { baseUrl, part, type, order, maxResults, q, key } = this.api;
+      const apiUrl = `${baseUrl}part=${part}&type=${type}&order=${order}&q=${q}&maxResults=${maxResults}&key=${key}`;
+      this.getData(apiUrl);
+    },
+    parseSearchString(food) {
+      // Trim search string
+      const trimmedSearchString = food.trim();
+      if (trimmedSearchString !== '') {
+        // Split search string
+        const searchParams = trimmedSearchString.split(/\s+/);
+        // Emit event
+        this.$emit('search', searchParams);
+      }
+      
+    }
+  },
+  watch: {
+    text_answer: function(newValue) {
+      console.log('s');
+      if(newValue != '') {
+        console.log('s');
+        this.questions[this.currentQuestion].answer = newValue;
+        this.selectAnswer(newValue);
+      }
+    }
   },
   mounted() {
     
