@@ -1,5 +1,6 @@
 # QuizApp
-<img src="logo.png" data-canonical-src="logo.png" width="300" height="300" />
+<img src="logo.png" data-canonical-src="logo.png" width="300" height="300" style="display: block; margin-left: auto;margin-right: auto;width: 50%;"/>
+
 # Description 
 
 QuizApp is a Vue based App 
