@@ -50,7 +50,7 @@
       <button class="close">Close</button>
       <button class="redo">Redo</button>
       <div v-if="this.videos.length" >
-        {{iframeSrc = "https://www.youtube.com/embed/" + videos[0].id.videoId}}
+        {{iframeSrc = "https://www.youtube.com/embed/" + videos[Math.floor(Math.random() * 13)].id.videoId}}
         <iframe width="420" height="345" :src="iframeSrc" >
         </iframe>
       </div>

@@ -115,9 +115,6 @@ new Vue({
       }
       
     },
-    randomvideo(){
-        return 
-    }
   },
   mounted() {
     
