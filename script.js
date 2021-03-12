@@ -84,7 +84,7 @@ new Vue({
     },
     //Get Data with Axios
     getData(apiUrl) {
-      axios
+      return axios
         .get(apiUrl)
         .then(res => {
           this.videos = res.data.items;
