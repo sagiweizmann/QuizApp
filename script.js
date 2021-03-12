@@ -45,6 +45,7 @@ new Vue({
       userdata:[],
       lala:[],
       test:['pasta'],
+      iframeSrc:"",
       //Youtube Data API Related Vars
       videos: [],
       reformattedSearchString: '',
@@ -88,6 +89,7 @@ new Vue({
         .get(apiUrl)
         .then(res => {
           this.videos = res.data.items;
+          iframeSrc=  + this.videos[0].id.videoID;
           this.api.prevPageToken = res.data.prevPageToken;
           this.api.nextPageToken = res.data.nextPageToken;
         })
@@ -100,6 +102,7 @@ new Vue({
       const { baseUrl, part, type, order, maxResults, q, key } = this.api;
       const apiUrl = `${baseUrl}part=${part}&type=${type}&order=${order}&q=${q}&maxResults=${maxResults}&key=${key}`;
       this.getData(apiUrl);
+      
     },
     parseSearchString(food) {
       // Trim search string

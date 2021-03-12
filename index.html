@@ -50,7 +50,8 @@
       <button class="close">Close</button>
       <button class="redo">Redo</button>
       <div v-if="this.videos.length" >
-        <iframe width="420" height="345" v-bind:src="'https://www.youtube.com/embed/' + this.videos[0].id.videoID">
+        {{iframeSrc = "https://www.youtube.com/embed/" + videos[0].id.videoId}}
+        <iframe width="420" height="345" :src="iframeSrc" >
         </iframe>
       </div>
     </div>
