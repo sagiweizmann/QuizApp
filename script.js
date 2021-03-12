@@ -39,6 +39,7 @@ new Vue({
             },
             
         ],
+      currentAnswer:"",
       temp: [],
       currentQuestion: 0,
       answered: 0,
@@ -67,6 +68,7 @@ new Vue({
   },
   methods: {
     selectAnswer: function(e) {
+      
       var choise = e.currentTarget,
           answers = document.querySelectorAll('.answers span'),
           nextBtn = document.querySelector('.next-btn');
@@ -76,10 +78,7 @@ new Vue({
       });
       
       choise.classList.add('selected');
-
       this.questions[this.currentQuestion].selected = choise.dataset.index; // add the selected index to the obj in the 'selected' property
-      this.userdata.push( this.questions[this.currentQuestion].answer);
-      console.log(this.userdata);
       nextBtn.removeAttribute('disabled');
       
     },
@@ -89,7 +88,6 @@ new Vue({
         .get(apiUrl)
         .then(res => {
           this.videos = res.data.items;
-          iframeSrc=  + this.videos[0].id.videoID;
           this.api.prevPageToken = res.data.prevPageToken;
           this.api.nextPageToken = res.data.nextPageToken;
         })
