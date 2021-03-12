@@ -12,7 +12,7 @@ QuizApp is a Vue based App
 # How to run
 
 
-# Video
+# GIF
 ![1](photos/system.png)
 
 # Projects that made this possible

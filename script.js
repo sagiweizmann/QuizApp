@@ -44,7 +44,7 @@ new Vue({
       answered: 0,
       userdata:[],
       lala:[],
-      test:['food'],
+      test:['pasta'],
       //Youtube Data API Related Vars
       videos: [],
       reformattedSearchString: '',
@@ -55,12 +55,14 @@ new Vue({
         order: 'viewCount',
         maxResults: 12,
         q: '',
-        key: 'AIzaSyBUpIcostVZgNrhqxwxB0Fh5SNqxqMbj2g',
+        key: 'AIzaSyDjJHANU3Tmj9JRim29JgbVIC-veStWjcg',
         prevPageToken: '',
         nextPageToken: ''
       },
-      text_answer: ''
     }
+  },
+  created() {
+    window.handler = this;
   },
   methods: {
     selectAnswer: function(e) {
@@ -109,16 +111,9 @@ new Vue({
         this.$emit('search', searchParams);
       }
       
-    }
-  },
-  watch: {
-    text_answer: function(newValue) {
-      console.log('s');
-      if(newValue != '') {
-        console.log('s');
-        this.questions[this.currentQuestion].answer = newValue;
-        this.selectAnswer(newValue);
-      }
+    },
+    randomvideo(){
+        return 
     }
   },
   mounted() {

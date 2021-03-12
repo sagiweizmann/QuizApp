@@ -40,7 +40,7 @@
           </div>
         </transition>
          <div class="next-question">
-           <button class="next-btn" @click="currentQuestion < (questions.length -1) ? () => {} : search(test)" disabled>{{ currentQuestion < (questions.length -1) ? 'Next' : 'Result!' }}</button>      
+           <button class="next-btn" @click="currentQuestion < (questions.length -1) ? () => {} : search([userdata[0]])" disabled>{{ currentQuestion < (questions.length -1) ? 'Next' : 'Result!' }}</button>      
          </div>
       </div>
     
@@ -49,7 +49,10 @@
       <h2>Hi {{ userdata[0] }} lover, how is {{ userdata[1] }} are doing this year? Don’t forget to {{ userdata[2] }}</h2>
       <button class="close">Close</button>
       <button class="redo">Redo</button>
-      <label>{{ this.videos}}</label>
+      <div v-if="this.videos.length" >
+        <iframe width="420" height="345" v-bind:src="'https://www.youtube.com/embed/' + this.videos[0].id.videoID">
+        </iframe>
+      </div>
     </div>
   </div>
 </div>
